@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-03-29 Wed 20:34 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How to Install a Package</title>
+<meta name="author" content="Paige Roy" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">How to Install a Package</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd05fdee">1. package managers</a></li>
+<li><a href="#orgce4d4b2">2. pacman</a>
+<ul>
+<li><a href="#org28a198c">2.1. getting information about packages</a></li>
+<li><a href="#org13df29b">2.2. installing packages</a></li>
+<li><a href="#org37d2e85">2.3. removing packages</a></li>
+<li><a href="#org1299ff9">2.4. misc</a>
+<ul>
+<li><a href="#org1c42d86">2.4.1. pacman.conf</a></li>
+<li><a href="#org3629aa9">2.4.2. clearing cache</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd05fdee" class="outline-2">
+<h2 id="orgd05fdee"><span class="section-number-2">1.</span> package managers</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This is straight from the archwiki
+A package is an archive containing:
+</p>
+<ul class="org-ul">
+<li>all of the (compiled) files of an application</li>
+<li>metadata about the application, such as application name, version, dependencies, etc.</li>
+<li>installation files and directives for pacman</li>
+<li>(optionally) extra files to make your life easier, such as a start/stop script</li>
+</ul>
+<p>
+The package manager can update, install, and remove these said packages.
+This is a whole heck of a lot easier than installing packages from
+source, or scouring the internet for that one sketchy .exe like on
+windows. The package manager pulls from repositories of packaged
+which are managed by some repository maintainers. This means you can
+be fairly certain that a package you are downloading from the repository
+does not have some form of malware as it needed to be checked prior to
+its listing. There are the official repositories which pacman pulls from,
+and also user repositories, such as the 'arch user repository' or AUR.
+These packages are not checked with as much scrutiny, that being said
+I personally have never ran into an AUR issue.
+</p>
+</div>
+</div>
+<div id="outline-container-orgce4d4b2" class="outline-2">
+<h2 id="orgce4d4b2"><span class="section-number-2">2.</span> pacman</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The package manager used by manjaro is pacman. There is a GUI frontend
+called 'Pamac' which ships with manjaro, but I would like to cover
+interfacing with it via the command line.
+</p>
+</div>
+<div id="outline-container-org28a198c" class="outline-3">
+<h3 id="org28a198c"><span class="section-number-3">2.1.</span> getting information about packages</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Usually you can get information about a package from the archwiki
+or a manjaro webpage, but we can also learn about packages right
+from the command line. Using the command 'pacman -Ss [keyword]'
+will search the repositories listed for the package, or any package
+which contains the [keyword] in its description. To check packages
+locally installed you can use 'pacman -Qs [keyword]'.
+</p>
+</div>
+</div>
+<div id="outline-container-org13df29b" class="outline-3">
+<h3 id="org13df29b"><span class="section-number-3">2.2.</span> installing packages</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+To install packages, you really should first update the system.
+Manjaro is a rolling release based distribution, which means instead
+of having to do a major replace on the whole system to upgrade, it
+updates everything together all at once. Smaller updates short time
+vs Major updates once in a blue moon. This can lead to issues where
+if you update only a single package and it has a dependancy of it
+which is an older version, things can get wacky. So its very important
+to not have differing ages of packages on your system.
+</p>
+
+<p>
+To update the whole system you must do the command
+'pacman -Syu', then you can install your package. Then you can
+use the command 'pacman -S [package name]'. Or you can combine
+the two terms and just do 'pacman -Syu [package name]'. I personally
+do 'pacman -Sy [package name]' but thats super bad for many reasons
+so you ought to never do that. To install a package that is local
+on the machine or a direct link over the internet you can use the
+command 'pacman -U [file path or link to file]'.
+</p>
+</div>
+</div>
+<div id="outline-container-org37d2e85" class="outline-3">
+<h3 id="org37d2e85"><span class="section-number-3">2.3.</span> removing packages</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+To remove a package, you can simply use 'pacman -R [package name]'.
+But this only removes the package itself, and cause issues. For
+instance if other packages rely on this package it will cause an error
+or simply not run. To remove a package and any dependancies
+you can use 'pacman -Rc [package name]' but you should be careful
+with this as it can have some pretty big consequences.
+</p>
+</div>
+</div>
+<div id="outline-container-org1299ff9" class="outline-3">
+<h3 id="org1299ff9"><span class="section-number-3">2.4.</span> misc</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org1c42d86" class="outline-4">
+<h4 id="org1c42d86"><span class="section-number-4">2.4.1.</span> pacman.conf</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+You can do some small configuration within this file, located
+at /etc/pacman.conf. In it you can also add different repositories
+that pacman can act upon. 
+</p>
+</div>
+</div>
+<div id="outline-container-org3629aa9" class="outline-4">
+<h4 id="org3629aa9"><span class="section-number-4">2.4.2.</span> clearing cache</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+Pacman stores a copy/backup of every package installed to the system.
+You don't really need all that jazz unless you need to downgrade to
+a previous version of a package. If the cache is left alone it
+shall continue to balloon and grow in size so it makes sense to
+clear it eventually. To do so, use 'pacman -Sc to clear the cache
+from older packages that are no longer installed. The reccomended
+thing to do however is to use 'paccache -rvk3' to remove all packages
+except for the past 3 versions of all packages.
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Paige Roy</p>
+<p class="date">Created: 2023-03-29 Wed 20:34</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

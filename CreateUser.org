@@ -1,0 +1,83 @@
+#+title: How to Create a User
+#+author: Paige Roy
+
+* Create the user
+** useradd
+useradd is the main command to add users in GNU+Linux
+The command we will be using today is
+'useradd -s /bin/bash -m -Gwheel [user]'
+the m flag creates a home directory for the user
+at the point /home/[user]. The -s /bin/bash links it
+to the bash shell, can replace it with ZSH or some
+different shell if wanted.
+*** all users
+to see all users in a system use the following command
+'cat /etc/passwd' which will show you relevant information
+for all the users on the system, such as username, user id,
+group id, and home file and default shell.
+** groups
+The -Gwheel flag specifies which groups the user is
+a part of. In this instance we explicity made the user
+become part of the wheel group. When the sudoers file
+is configured this will allow the user to run
+any command, similar to the root superuser. Do not give
+out wheel willy nilly to any user you create! To check
+what groups you are a member of use the 'groups' command.
+If you want to know what groups another user is a member of
+type 'groups [that_username]'.
+To add a user to another group: 'usermod -aG [group] [user]'
+*** sudoers
+To configure who can use the sudo command and do
+powerful system configuring changes the sudoers file
+must be edited. I really just add my user or any
+that need sudo to the wheel group, and then uncomment
+the line allowing members of wheel to execute any commands.
+To edit the sudoers file for the first time you have
+to be root, and run the command 'visudo'.
+** password
+Set a root password!!! using the 'passwd' command. This sets
+the password for the current user. To set it for another user
+you can do 'password [that_username]'
+* File permissions
+** chown
+Files and folders have user and group based permissions
+in GNU+Linux. Meaning that certain users/groups can own folders
+and the files within them, restricting who can have access to them.
+This can range from execution permissions, write permissions, read
+permissions and even permissions to just see what files are in
+a directory or copying them. To check the properties of a file
+we can use the 'ls -l [file]' command. This shows us some
+important information about the file. Such as read/write/execute
+permissions, which user owns the file, which groups own the
+file, etc. We will go more in depth about the ls command shortly.
+To change ownership of a directory to another user we can use
+the chown command 'chown [user] [file]'. For a directory use
+'chown -R [user] ./[directory]'. The -R flag gives ownership
+of all the files within to the specified user. One can change
+ownership of a file to members of a group instead of just a
+single user with 'chown :[group] [file]'.
+** chmod
+You dont need to do a whole bunch of group management and
+ownership in most cases. Honestly most of the time you can use
+the chmod command to change which modifiers affect the file.
+Using this you can enable everyone to be able to read, but only
+one user or group to edit. Or enable only execution for a file.
+This gives a lot more options than just 'can you interact at all'.
+Chmod takes the following three main arguments; read, write, and
+execute. Earlier when we looked at who owned a file we saw
+a string of 9 characters before the user who owned that file.
+The first 3 indicated the permissions for the user who owned said
+file, the next 3 are permissions for the group who owns the file,
+and the final 3 are permissions for anyone. For a full chmod
+command you need to specify who the command affects (u for the owner,
+g for the group, o for other people than the group/user,
+a or everyone) what the command will change (- remove this, + add
+this,= set to only this) and what properties are set (r for read,
+w for write, x for execute). One simple example to make a file
+ONLY executable by everyone you can set 'chmod a=x [file]'. Or
+if you want to add the executable by everyone tag you can
+instead do 'chmod a+x [file]'. Maybe you want to have everyone
+in your group be able to read and write to a directory, but everyone
+else should only have read permissions. 'chmod -R g=rw,o=r [directory]'.
+There is also a numerical shorthand which can be used, but will
+not be gone into for brevity's sake.

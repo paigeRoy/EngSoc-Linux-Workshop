@@ -1,0 +1,83 @@
+#+title: GNU+Linux Workshop Goals
+#+author: Paige Roy
+
+* what to cover?
+** Software
+List some relevent open source software
+people ought to know about
+- GNU: Bash, GCC, Coreutils, fdisk, grep, awk, grub, gimp, git, emacs, GPLv3
+- Firefox
+- VLC, qBittorrent
+- Linux, \*BSD
+- LaTeX
+- Audacity
+- OpenCV, Tensorflow
+- Python
+- Apache HTTP Server
+- MySQL
+** Philosophy
+Some major points to cover on the goals of free software
+- Licenses (GPLv3, BSD Clause, Mozilla, and Freeware)
+- GNU Philosophy (four essential freedoms)
+- Unix philosophy: "Each program should do one thing well"
+  + Modularity
+  + Simplicity
+  + Smaller parts make the whole
+- Collaboration leading to improved code quality and error detection
+- Customizability (also user management is somewhat related)
+- how the file system works
+
+** Agenda
+- Talk about stability vs rolling release software
+  + Show the wiki for either arch or debian
+General overview of what to cover
+1) Show how to create a user and log in
+   - go over user and file permissions
+     + chown
+     + chmod
+2) Show how to install a package
+   - Show how to update repository
+   - Install feh, rxvt-unicode, vim, tldr
+   - talk about what a repository is
+     + briefly mention AUR
+3) Navigate the directory
+   - ls
+   - cat
+   - more
+   - cp
+   - Show the help manpage for cd, cp, mv, and mkdir.
+   - Explain use flags
+4) Install two programs which showcase terminal vs GUI
+   - File browsers ranger, and thunar
+   - htop
+5) Configure a programs config file
+   - Go over basic .Xresources configuration file for urxvt
+   - add some aliases
+6) Show the power of grep, sed, and awk with scripts
+   - show what a 'pipe' command does
+   - grep a selection of text
+   - Write a bash script which has a terminal program executed
+     + Use grep to filter the text steam
+     + Send to sed and format the 
+     + Maybe use awk for somethin
+7) Show how to compile code from source in the terminal
+   - This is def a WIP, find some arbitrary open source thing on
+     github, and compile it with like ﻿a makefile or make config
+8) Talk about next steps
+   - Some more advanced programs
+     + Emacs
+     + Vim
+     + Apache
+     + Syncthing
+     + Jellyfin
+     + SAMBA
+     + SSH
+   - More ways to configure system
+     + Any other locations where config files are stored
+And then thats the end of the interactive section
+
+
+
+* Interactive component
+** Loading up the virtual machine
+*** show people how to enable virtualization (or an approximation)

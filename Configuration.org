@@ -1,0 +1,70 @@
+#+TITLE: Configuration of a Program
+#+author: Paige Roy
+
+* what program and files
+The program we will be editing to make less atrocious, is the
+popular rxvt-unicode terminal emulator (henceforth referred to by
+its command urxvt). The file we will be editing is the .Xresources
+file. This is a generalized user configuration file to set up
+various X programs, and is loaded on login.
+* what is urxvt
+urxvt is a terminal emulator. it supports unicode fonts, extension with
+perl, and fast.
+* .Xresources
+By default, urxvt looks hideous. This is it's default configuration.
+What we will do in the .Xresources is configure the colours for the
+basic urxvt terminal, and add a perl extension. One quick and nice
+colour scheme creator online I use is terminal.sexy (yes... that is
+it's real name). Using it we can generate our default .Xresouces file
+under the export option. Once it is exported, there are three more
+colours which you might want to add: foreground_bold, highlightColor,
+highlightTextColor, colorRV. To notice any changes to the terminal,
+the .Xresources file needs to be reloaded, this is done via
+'xrdb .Xresources'. Now that the terminal doesn't hurt our eyes,
+we can add some more helpful little changes.
+** font
+The first change we can make is the font. Here we are using Adobe
+Source Code Pro. Its a basic unicode font and is fairly popular.
+More importantly it is installed on the live image so we can use it.
+Installing fonts really isn't fun at all, I've installed many fonts
+and it does NOT get easier. The line we are going to add to the file
+is 'URxvt.font: xft:Source Code Pro:size 8'. We are using an xft font
+here, which is something you're not actually supposed to do if you
+want more speed for the terminal emulator. Some personal choices
+I have configured is the cursor blinking, and removing the scrollbar.
+To do so: 'URxvt.scrollbar: false' and 'URxvt.cursorBlink: true'.
+** perl extension
+urxvt is able to be extended using perl programs. One useful extension
+is selection-to-clipboard. This allows anything highlighted in the
+terminal to be copied to the clipboard. Add these lines to the .Xresources
+file:
+'URxvt.per-ext-common: selection-to-clipboard
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste'
+** transparency
+If you care about transparency (are wrong) you can do so with the
+following lines added to the file
+'URxvt.depth: 32
+URxvt.background: [95]#000000'
+with the value in the brackets being the level of transparency.
+* .bashrc
+The 'shell' which is what interprets all of our commands through
+the command line, in our case is bash, the boune again shell.
+It can be configured in the .bashrc file on a per user basis.
+Manjaro already has a heavily configured .bashrc file by default,
+and there really isn't much you can add. However in here, we can
+place alias's. An alias in the shell is a command which can be
+used to refer to another command, or even a script. You can define
+these aliases right here in .bashrc for ease of use. Manjaro has
+by default some commented aliases in the file by default, but we
+are going to add some that I personally use and are helpful.
+'alias ls='ls --color=auto'
+alias copyd='rsync -r --progress'
+alias copy='rsync --progress'
+alias chmox='chmod +x''
+* more configs
+If you use vim you have a .vimrc file, emacs you should have an
+emacs directory. The vast majority of programs you will install
+as a user have their user based configuration files in the .config
+directory.

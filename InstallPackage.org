@@ -1,0 +1,71 @@
+#+title: How to Install a Package
+#+author: Paige Roy
+
+* package managers
+This is straight from the archwiki
+A package is an archive containing:
+- all of the (compiled) files of an application
+- metadata about the application, such as application name, version, dependencies, etc.
+- installation files and directives for pacman
+- (optionally) extra files to make your life easier, such as a start/stop script
+The package manager can update, install, and remove these said packages.
+This is a whole heck of a lot easier than installing packages from
+source, or scouring the internet for that one sketchy .exe like on
+windows. The package manager pulls from repositories of packaged
+which are managed by some repository maintainers. This means you can
+be fairly certain that a package you are downloading from the repository
+does not have some form of malware as it needed to be checked prior to
+its listing. There are the official repositories which pacman pulls from,
+and also user repositories, such as the 'arch user repository' or AUR.
+These packages are not checked with as much scrutiny, that being said
+I personally have never ran into an AUR issue.
+* pacman
+The package manager used by manjaro is pacman. There is a GUI frontend
+called 'Pamac' which ships with manjaro, but I would like to cover
+interfacing with it via the command line.
+** getting information about packages
+Usually you can get information about a package from the archwiki
+or a manjaro webpage, but we can also learn about packages right
+from the command line. Using the command 'pacman -Ss [keyword]'
+will search the repositories listed for the package, or any package
+which contains the [keyword] in its description. To check packages
+locally installed you can use 'pacman -Qs [keyword]'.
+** installing packages
+To install packages, you really should first update the system.
+Manjaro is a rolling release based distribution, which means instead
+of having to do a major replace on the whole system to upgrade, it
+updates everything together all at once. Smaller updates short time
+vs Major updates once in a blue moon. This can lead to issues where
+if you update only a single package and it has a dependancy of it
+which is an older version, things can get wacky. So its very important
+to not have differing ages of packages on your system.
+
+To update the whole system you must do the command
+'pacman -Syu', then you can install your package. Then you can
+use the command 'pacman -S [package name]'. Or you can combine
+the two terms and just do 'pacman -Syu [package name]'. I personally
+do 'pacman -Sy [package name]' but thats super bad for many reasons
+so you ought to never do that. To install a package that is local
+on the machine or a direct link over the internet you can use the
+command 'pacman -U [file path or link to file]'.
+** removing packages
+To remove a package, you can simply use 'pacman -R [package name]'.
+But this only removes the package itself, and cause issues. For
+instance if other packages rely on this package it will cause an error
+or simply not run. To remove a package and any dependancies
+you can use 'pacman -Rc [package name]' but you should be careful
+with this as it can have some pretty big consequences.
+** misc
+*** pacman.conf
+You can do some small configuration within this file, located
+at /etc/pacman.conf. In it you can also add different repositories
+that pacman can act upon. 
+*** clearing cache
+Pacman stores a copy/backup of every package installed to the system.
+You don't really need all that jazz unless you need to downgrade to
+a previous version of a package. If the cache is left alone it
+shall continue to balloon and grow in size so it makes sense to
+clear it eventually. To do so, use 'pacman -Sc to clear the cache
+from older packages that are no longer installed. The reccomended
+thing to do however is to use 'paccache -rvk3' to remove all packages
+except for the past 3 versions of all packages.

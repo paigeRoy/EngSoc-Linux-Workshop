@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-03-29 Wed 20:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How to Create a User</title>
+<meta name="author" content="Paige Roy" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">How to Create a User</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org67eb91e">1. Create the user</a>
+<ul>
+<li><a href="#org30da989">1.1. useradd</a>
+<ul>
+<li><a href="#orgadf5f3f">1.1.1. all users</a></li>
+</ul>
+</li>
+<li><a href="#org58884cb">1.2. groups</a>
+<ul>
+<li><a href="#org9492416">1.2.1. sudoers</a></li>
+</ul>
+</li>
+<li><a href="#org133ce9a">1.3. password</a></li>
+</ul>
+</li>
+<li><a href="#org78ae7de">2. File permissions</a>
+<ul>
+<li><a href="#orgae97b3a">2.1. chown</a></li>
+<li><a href="#org6d8b33e">2.2. chmod</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org67eb91e" class="outline-2">
+<h2 id="org67eb91e"><span class="section-number-2">1.</span> Create the user</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org30da989" class="outline-3">
+<h3 id="org30da989"><span class="section-number-3">1.1.</span> useradd</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+useradd is the main command to add users in GNU+Linux
+The command we will be using today is
+'useradd -s /bin/bash -m -Gwheel [user]'
+the m flag creates a home directory for the user
+at the point <i>home</i>[user]. The -s /bin/bash links it
+to the bash shell, can replace it with ZSH or some
+different shell if wanted.
+</p>
+</div>
+<div id="outline-container-orgadf5f3f" class="outline-4">
+<h4 id="orgadf5f3f"><span class="section-number-4">1.1.1.</span> all users</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+to see all users in a system use the following command
+'cat /etc/passwd' which will show you relevant information
+for all the users on the system, such as username, user id,
+group id, and home file and default shell.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org58884cb" class="outline-3">
+<h3 id="org58884cb"><span class="section-number-3">1.2.</span> groups</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The -Gwheel flag specifies which groups the user is
+a part of. In this instance we explicity made the user
+become part of the wheel group. When the sudoers file
+is configured this will allow the user to run
+any command, similar to the root superuser. Do not give
+out wheel willy nilly to any user you create! To check
+what groups you are a member of use the 'groups' command.
+If you want to know what groups another user is a member of
+type 'groups [that<sub>username</sub>]'.
+To add a user to another group: 'usermod -aG [group] [user]'
+</p>
+</div>
+<div id="outline-container-org9492416" class="outline-4">
+<h4 id="org9492416"><span class="section-number-4">1.2.1.</span> sudoers</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+To configure who can use the sudo command and do
+powerful system configuring changes the sudoers file
+must be edited. I really just add my user or any
+that need sudo to the wheel group, and then uncomment
+the line allowing members of wheel to execute any commands.
+To edit the sudoers file for the first time you have
+to be root, and run the command 'visudo'.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org133ce9a" class="outline-3">
+<h3 id="org133ce9a"><span class="section-number-3">1.3.</span> password</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Set a root password!!! using the 'passwd' command. This sets
+the password for the current user. To set it for another user
+you can do 'password [that<sub>username</sub>]'
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org78ae7de" class="outline-2">
+<h2 id="org78ae7de"><span class="section-number-2">2.</span> File permissions</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgae97b3a" class="outline-3">
+<h3 id="orgae97b3a"><span class="section-number-3">2.1.</span> chown</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Files and folders have user and group based permissions
+in GNU+Linux. Meaning that certain users/groups can own folders
+and the files within them, restricting who can have access to them.
+This can range from execution permissions, write permissions, read
+permissions and even permissions to just see what files are in
+a directory or copying them. To check the properties of a file
+we can use the 'ls -l [file]' command. This shows us some
+important information about the file. Such as read/write/execute
+permissions, which user owns the file, which groups own the
+file, etc. We will go more in depth about the ls command shortly.
+To change ownership of a directory to another user we can use
+the chown command 'chown [user] [file]'. For a directory use
+'chown -R [user] ./[directory]'. The -R flag gives ownership
+of all the files within to the specified user. One can change
+ownership of a file to members of a group instead of just a
+single user with 'chown :[group] [file]'.
+</p>
+</div>
+</div>
+<div id="outline-container-org6d8b33e" class="outline-3">
+<h3 id="org6d8b33e"><span class="section-number-3">2.2.</span> chmod</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+You dont need to do a whole bunch of group management and
+ownership in most cases. Honestly most of the time you can use
+the chmod command to change which modifiers affect the file.
+Using this you can enable everyone to be able to read, but only
+one user or group to edit. Or enable only execution for a file.
+This gives a lot more options than just 'can you interact at all'.
+Chmod takes the following three main arguments; read, write, and
+execute. Earlier when we looked at who owned a file we saw
+a string of 9 characters before the user who owned that file.
+The first 3 indicated the permissions for the user who owned said
+file, the next 3 are permissions for the group who owns the file,
+and the final 3 are permissions for anyone. For a full chmod
+command you need to specify who the command affects (u for the owner,
+g for the group, o for other people than the group/user,
+a or everyone) what the command will change (- remove this, + add
+this,= set to only this) and what properties are set (r for read,
+w for write, x for execute). One simple example to make a file
+ONLY executable by everyone you can set 'chmod a=x [file]'. Or
+if you want to add the executable by everyone tag you can
+instead do 'chmod a+x [file]'. Maybe you want to have everyone
+in your group be able to read and write to a directory, but everyone
+else should only have read permissions. 'chmod -R g=rw,o=r [directory]'.
+There is also a numerical shorthand which can be used, but will
+not be gone into for brevity's sake.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Paige Roy</p>
+<p class="date">Created: 2023-03-29 Wed 20:32</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

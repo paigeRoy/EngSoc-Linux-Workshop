@@ -1,0 +1,22 @@
+#+title: The GNU+Linux File System
+#+author: Paige Roy
+
+* How the file system works
+- everything is a file
+  - bin is for binaries of small systems, used by the whol system
+  - boot is how the system boots
+  - etc is the system wide config area
+  - lib folders are where libraries are stored, required by bin
+  - mnt is where to find other mounted drives (usually manually)
+  - opt manually installed software from other vendors is placed,
+    place to install applications created yourself, like windows path
+  - proc places to store system files which update based on processes active
+  - home is where users files, document and configs are stored
+  - root is the root users home folder
+  - run temporary file system (stuff stored entirely in ram)
+  - sys the system folder is created each boot up and can be edited by programs
+    to interact with the systems kernal
+  - usr folder is where applications installed by the user will be
+  - var is the variable directory. holds data that is expected to increase, such
+    as system logs and databases for mail
+  - hidden directories start with a period

@@ -1,0 +1,39 @@
+#+TITLE: Folders
+#+author: Paige Roy
+
+EVERYTHING IS A FILE. Even folders. Folders are just special files
+which point to other files. That being said, we will learn about
+navigating folders, making folders, editing folders, etc.
+* navigation
+** cd
+'cd' is a very very simple program. It changes the current directory
+to the directory name specified like so: 'cd [path]'. To go back a
+directory you can use 'cd ..'
+** ls
+The ls command lists informations about files. To simply list the files
+inside the current directory use 'ls'. To see hidden files (files with
+a . in front of them) use 'ls -a'. To list more information use the -l
+flag. To check the size in easily readable units use the -lh flags.
+Use the -d flag to list directories instead of files. To sort by
+largest file first add the -S flag.
+* reading
+** cat
+To view the contents of a file, you can use the cat command and then
+specify the files name. Super simple. To make a file using cat use
+the command 'cat >[file]' and to copy data from one file to another
+file use 'cat [file A]>[file B]'
+** more
+more can be used to quickly check through a files content
+* creation
+** cp
+cp is the command to copy one folder from a location to another.
+It is used like 'cp [file] [file]'. To copy a whole directory
+to another location pass the -a flag.
+** mv
+mv is just like the cp command, except it deletes the original file
+when moving it to the new location.
+** rsync
+If you're moving larger files, or want to actually see a progress bar
+while the transfer is happening, you can use rsync while passing it
+the --progress flag. 
+* go over use flags

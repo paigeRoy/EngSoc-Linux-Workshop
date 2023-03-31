@@ -1,0 +1,61 @@
+#+TITLE: The Power of grep, sed, and awk
+#+author: Paige Roy
+
+When you are dealing with large quantities of data, or are searching for
+a pattern or sentence, grep is here for you. When processing large quantities
+of data and making it make just a bit more sense, sed and awk are here.
+* grep
+GNU grep is a great little program I genuinely use every single day.
+Using grep on a piped command you can parse the data for a specific
+key word, or phrase which you need. one I use to figure out the name
+of a file is 'ls | grep [keyword]'. To make the search non-case sensitive
+pass the -i flag. Notice how it count part of a word as a whole keyword?
+If you just want the bare word itself you can pass the -w flag.
+To search recursively you use the command 'grep -ri [keyword] [directory]'.
+To search within a file use 'grep [keyword] [file]'. If you need the number
+of a phases occurance, pass the -c flag. To see which files contain the
+keyword in a directory say, you can pass the -l flag. There is, quite
+a bit more grep can do, and I would reccomend reading the manpage for
+grep, or looking up online some more use cases for grep.
+* sed
+GNU sed is one of those commands which, I figured out a year ago, wrote
+some shell scripts using it and then promptly forgot how the heck I wrote
+some of my code. One line of code in a shell script I wrote is
+'cat /proc/meminfo | grep "MemAvailable" | sed -e 's/^.*://' -e 's/ //g' -e 's/..$//'
+and oh my god this is literally hideous. Sed is a stream editor, and can
+edit a stream of input that is provided to it. What I was doing here
+was formatting the output from the /proc/meminfo file into something more
+readable for my status bar.
+** substitution
+sed can be used to search out a string, and replace it with another.
+To do so, the sed command is 's/[find]/[replace]/' <[old] >[new].
+If you want to edit the original file, pass the -i flag as well.
+But this only replaces the first instance of this [find] term in
+the stream. To make it affect all of the instances of this you can
+add the g term after the last slash which makes it have the substitution
+affect all terms in the input. You can specify other things after
+the final / term, such as i which signifies case insensitivity. The
+/'s are called sigals, and can actually be replaced with a different
+term. For instance some people use @ or [. To delete a whole line
+with the specified string in them use the command '/[string]/d'.
+To chain multiple sed commands you can use the -e command to execute
+multiple sed commands back to back. An example command, is
+'ls | sed '/~$/d'' what this does here is it deletes any files from
+the prompt which have a tilda at the end of them.
+** search
+If you pass the -n flag and '/[keyword]/p'
+** talking about my command
+cat /proc/meminfo | grep "MemAvailable" | sed -e 's/^.*://' -e 's/ //g' -e 's/..$//
+The previous command I mentioned is not the best piece of sed code
+ever written but it gets the point accross. It contains some special
+bits and bobs which took me a minute to figure out.
+*** 's/^.*://'
+This command removes everything in each line up until the first colon.
+*** 's/ //g'
+This command removes every space within the line
+*** 's/..$//
+This command is funky
+- The .. denotes how many characters we are removing from the end
+  of the line (could specify it as .{2})
+- The $ denotes that we are starting our work from the end of the
+  line
